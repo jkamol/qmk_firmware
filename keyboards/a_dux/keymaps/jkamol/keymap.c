@@ -35,7 +35,7 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 
 const uint16_t PROGMEM fp_combo[] = {KC_F, KC_P, COMBO_END};
 const uint16_t PROGMEM pb_combo[] = {KC_P, RALT_T(KC_B), COMBO_END};
-const uint16_t PROGMEM alt_tab_combo[] = {LALT_T(KC_R), LT(2,KC_SPACE), COMBO_END};
+const uint16_t PROGMEM alt_tab_combo[] = {LALT_T(KC_R), KC_X, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {LALT_T(KC_R), KC_S, COMBO_END};
 const uint16_t PROGMEM escape_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM flip_combo[] = {KC_T, KC_G, COMBO_END};
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,        _______,                                                           _______,        _______
   ),
   [NAV_L] = LAYOUT_split_3x5_2(
-    TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_RALT,         KC_ACL0,        KC_APPLICATION, KC_UP,          KC_PGUP,        KC_CAPSLOCK,
+    TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_LALT,         KC_ACL0,        KC_APPLICATION, KC_UP,          KC_PGUP,        KC_CAPSLOCK,
     KC_LSHIFT,      KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,       KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       RSFT_T(KC_END),
     KC_LCTRL,       KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,         KC_BSPACE,      KC_DELETE,      LALT(KC_LSHIFT),KC_PGDOWN,      KC_RCTRL,
     KC_MS_BTN1,     KC_MS_BTN2,                                                      KC_LALT,        XXXXXXX
