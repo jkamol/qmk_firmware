@@ -78,46 +78,46 @@ enum tap_dance_codes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [MAIN_L] = LAYOUT_split_3x5_2(
-    RCS_T(KC_Q),    KC_W,           KC_F,           KC_P,           RALT_T(KC_B),    RALT_T(KC_J),   KC_L,           KC_U,           KC_Y,           RCS_T(KC_SCOLON), 
-    LSFT_T(KC_A),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,            KC_M,           KC_N,           KC_E,           KC_I,           RSFT_T(KC_O),
-    LCTL_T(KC_Z),   KC_X,           KC_C,           KC_D,           LGUI_T(KC_V),    RGUI_T(KC_K),   KC_H,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),
-    LT(SYM_L,KC_SPACE), LCTL_T(KC_TAB),                                              LT(FN_L,KC_ENTER), LT(NAV_L,KC_BSPACE)
+    RCS_T(KC_Q),    KC_W,           KC_F,           KC_P,           RALT_T(KC_B),   /**/ RALT_T(KC_J),   KC_L,           KC_U,           KC_Y,           RCS_T(KC_SCOLON), 
+    LSFT_T(KC_A),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,           /**/ KC_M,           KC_N,           KC_E,           KC_I,           RSFT_T(KC_O),
+    LCTL_T(KC_Z),   KC_X,           KC_C,           KC_D,           LGUI_T(KC_V),   /**/ RGUI_T(KC_K),   KC_H,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),
+    LCTL_T(KC_TAB), LT(SYM_L,KC_SPACE),                                             /**/ LT(NAV_L,KC_BSPACE), LT(FN_L,KC_ENTER)
   ),
   [QWERTY_L] = LAYOUT_split_3x5_2(
-    _______,        _______,        KC_E,           KC_R,           RALT_T(KC_T),    RALT_T(KC_Y),   KC_U,           KC_I,           KC_O,           RCS_T(KC_P), 
-    _______,        LALT_T(KC_S),   KC_D,           KC_F,           _______,         KC_H,           KC_J,           KC_K,           KC_L,           RSFT_T(KC_SCOLON),
-    _______,        _______,        _______,        KC_V,           LGUI_T(KC_B),    RGUI_T(KC_N),   KC_M,           _______,        _______,        _______,
-    _______,        _______,                                                         _______,        _______ 
+    _______,        _______,        KC_E,           KC_R,           RALT_T(KC_T),   /**/ RALT_T(KC_Y),   KC_U,           KC_I,           KC_O,           RCS_T(KC_P), 
+    _______,        LALT_T(KC_S),   KC_D,           KC_F,           _______,        /**/ KC_H,           KC_J,           KC_K,           KC_L,           RSFT_T(KC_SCOLON),
+    _______,        _______,        _______,        KC_V,           LGUI_T(KC_B),   /**/ RGUI_T(KC_N),   KC_M,           _______,        _______,        _______,
+    _______,        _______,                                                        /**/ _______,        _______ 
   ),
   [SYM_L] = LAYOUT_split_3x5_2(
-    TD(DANCE_QUIT), KC_9,           TD(DANCE_TASK), KC_7,           KC_6,            KC_CIRCUMFLEX,  KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
-    LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,            KC_GRAVE,       KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       RSFT_T(KC_QUOTE),
-    LCTL(KC_Z),     KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         LCTL(KC_Y),      KC_PERCENT,     KC_LBRACKET,    KC_RBRACKET,    KC_EXCLAIM,     RCTL_T(KC_BACKSLASH),
-    XXXXXXX,        _______,                                                           _______,        _______
+    TD(DANCE_QUIT), KC_9,           TD(DANCE_TASK), KC_7,           KC_6,           /**/ KC_CIRCUMFLEX,  KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
+    LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,           /**/ KC_GRAVE,       KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       RSFT_T(KC_QUOTE),
+    LCTL(KC_Z),     KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         LCTL(KC_Y),     /**/ KC_PERCENT,     KC_LBRACKET,    KC_RBRACKET,    KC_EXCLAIM,     RCTL_T(KC_BACKSLASH),
+    _______,        XXXXXXX,                                                        /**/ _______,        _______
   ),
   [NAV_L] = LAYOUT_split_3x5_2(
-    TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_LALT,         KC_ACL0,        KC_APPLICATION, KC_UP,          KC_PGUP,        KC_CAPSLOCK,
-    KC_LSHIFT,      KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,       KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       RSFT_T(KC_END),
-    KC_LCTRL,       KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,         KC_BSPACE,      KC_DELETE,      LALT(KC_LSHIFT),KC_PGDOWN,      KC_RCTRL,
-    KC_MS_BTN1,     KC_MS_BTN2,                                                      KC_LALT,        XXXXXXX
+    TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_LALT,        /**/ KC_ACL0,        KC_APPLICATION, KC_UP,          KC_PGUP,        KC_CAPSLOCK,
+    KC_LSHIFT,      KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,      /**/ KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       RSFT_T(KC_END),
+    KC_LCTRL,       KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,        /**/ KC_BSPACE,      KC_DELETE,      LALT(KC_LSHIFT),KC_PGDOWN,      KC_RCTRL,
+    KC_MS_BTN2,     KC_MS_BTN1,                                                     /**/ XXXXXXX,        KC_LALT
   ),
   [FN_L] = LAYOUT_split_3x5_2(
-    KC_1,           KC_2,           KC_3,           KC_4,           KC_PAUSE,        KC_SCROLLLOCK,  TD(DANCE_PWR),  LCA(KC_DELETE), XXXXXXX,        XXXXXXX,
-    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,           KC_F12,         XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
-    KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,          KC_F11,         DM_REC1,        DM_REC2,        DM_RSTP,        XXXXXXX,
-    KC_LALT,        MO(NUMPAD_L),                                                    KC_TAB,         TO(MAIN_L)
+    KC_1,           KC_2,           KC_3,           KC_4,           KC_PAUSE,       /**/ KC_SCROLLLOCK,  TD(DANCE_PWR),  LCA(KC_DELETE), XXXXXXX,        XXXXXXX,
+    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          /**/ KC_F12,         XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+    KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         /**/ KC_F11,         DM_REC1,        DM_REC2,        DM_RSTP,        QK_BOOTLOADER,
+    MO(NUMPAD_L),   KC_LALT,                                                        /**/ KC_TAB,         TO(MAIN_L)
   ),
   [NUMPAD_L] = LAYOUT_split_3x5_2(
-    KC_Q,           KC_M,           KC_F,           KC_P,           KC_T,            TD(DANCE_INS),  KC_KP_7,        KC_KP_8,        KC_KP_9,        KC_KP_MINUS,
-    KC_1,           KC_2,           KC_3,           KC_4,           TD(DANCE_MAIN),  KC_KP_PLUS,     KC_KP_4,        KC_KP_5,        KC_KP_6,        KC_KP_DOT,
-    LCTL_T(KC_Z),   KC_X,           KC_C,           KC_S,           KC_B,            KC_BSPACE,      KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_SLASH,
-    KC_LALT,        _______,                                                         _______,        KC_KP_0
+    KC_Q,           KC_M,           KC_F,           KC_P,           KC_T,           /**/ TD(DANCE_INS),  KC_KP_7,        KC_KP_8,        KC_KP_9,        KC_KP_MINUS,
+    KC_1,           KC_2,           KC_3,           KC_4,           TD(DANCE_MAIN), /**/ KC_KP_PLUS,     KC_KP_4,        KC_KP_5,        KC_KP_6,        KC_KP_DOT,
+    LCTL_T(KC_Z),   KC_X,           KC_C,           KC_S,           KC_B,           /**/ KC_BSPACE,      KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_SLASH,
+    _______,        KC_LALT,                                                        /**/ _______,        KC_KP_0
   ),
   [MACRO_L] = LAYOUT_split_3x5_2(
-    KC_AUDIO_MUTE,  KC_VOLU,        DM_PLY1,        DM_PLY2,        XXXXXXX,         XXXXXXX,        KC_CALCULATOR,  XXXXXXX,        XXXXXXX,        XXXXXXX,
-    KC_1,           KC_2,           KC_3,           KC_4,           KC_5,            KC_6,           KC_7,           KC_8,           KC_9,           KC_0,
-    KC_MPRV,        KC_VOLD,        KC_MNXT,        KC_MPLY,        XXXXXXX,         KC_BSPACE,      KC_DELETE,      KC_COMMA,       KC_DOT,         KC_SLASH,
-	LALT(KC_LEFT),  LALT(KC_RIGHT),                                                  _______,        _______
+    KC_AUDIO_MUTE,  KC_VOLU,        DM_PLY1,        DM_PLY2,        XXXXXXX,        /**/ XXXXXXX,        KC_CALCULATOR,  XXXXXXX,        XXXXXXX,        XXXXXXX,
+    KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           /**/ KC_6,           KC_7,           KC_8,           KC_9,           KC_0,
+    KC_MPRV,        KC_VOLD,        KC_MNXT,        KC_MPLY,        XXXXXXX,        /**/ KC_BSPACE,      KC_DELETE,      KC_COMMA,       KC_DOT,         KC_SLASH,
+	LALT(KC_LEFT),  LALT(KC_RIGHT),                                                 /**/ _______,        _______
   ),
 };
 
