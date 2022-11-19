@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [FN_L] = LAYOUT_split_3x5_2(
     KC_1,           KC_2,           KC_3,           KC_4,           KC_PAUSE,       /**/ KC_SCROLLLOCK,  TD(DANCE_PWR),  LCA(KC_DELETE), XXXXXXX,        XXXXXXX,
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          /**/ KC_F12,         XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
-    KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         /**/ KC_F11,         DM_REC1,        DM_REC2,        DM_RSTP,        QK_BOOTLOADER,
+    KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         /**/ KC_F11,         DM_REC1,        DM_REC2,        DM_RSTP,        KC_RCTRL,
     MO(NUMPAD_L),   KC_LALT,                                                        /**/ KC_TAB,         TO(MAIN_L)
   ),
   [NUMPAD_L] = LAYOUT_split_3x5_2(
