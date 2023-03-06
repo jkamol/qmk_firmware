@@ -4,3 +4,5 @@
 #define TAPPING_FORCE_HOLD
 
 #define MK_COMBINED
+
+#define MOUSEKEY_INTERVAL 24
