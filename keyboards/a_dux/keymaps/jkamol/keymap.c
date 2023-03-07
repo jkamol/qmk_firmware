@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     C_S_T(KC_Q),    KC_W,           KC_F,           KC_P,           RALT_T(KC_B),       /**/ RALT_T(KC_J),      KC_L,           KC_U,           KC_Y,           C_S_T(KC_QUOTE), 
     LSFT_T(KC_A),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_E,           KC_I,           LSFT_T(KC_O),
     LCTL_T(KC_Z),   KC_X,           KC_C,           KC_D,           LGUI_T(KC_V),       /**/ RGUI_T(KC_K),      KC_H,           KC_COMMA,       KC_DOT,         LCTL_T(KC_SLASH),
-                                                    LCTL_T(KC_TAB), LT(_SYM,KC_SPACE), /**/ LT(_NAV,KC_BSPC), LT(_FN,KC_ENTER)
+                                                    LCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_BSPC),  LT(_FN,KC_ENTER)
   ),
   [_QWERTY] = LAYOUT_split_3x5_2(
     _______,        _______,        KC_E,           KC_R,           RALT_T(KC_T),       /**/ RALT_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P), 
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
     LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_GRAVE,          KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       LSFT_T(KC_SCLN),
     TD(DANCE_UNDO), KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         LCTL(KC_Y),         /**/ KC_PERCENT,        KC_LBRC,        KC_RBRC,        KC_EXCLAIM,     LCTL_T(KC_BACKSLASH),
-                                                    MO(_FN),       XXXXXXX,            /**/ _______,           _______
+                                                    MO(_FN),        XXXXXXX,            /**/ _______,           _______
   ),
   [_NAV] = LAYOUT_split_3x5_2(
     TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
@@ -96,10 +96,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_MS_BTN2,     KC_MS_BTN1,         /**/ XXXXXXX,           KC_LALT
   ),
   [_FN] = LAYOUT_split_3x5_2(
-    KC_1,           KC_2,           KC_3,           KC_4,           KC_PAUSE,           /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), XXXXXXX,        XXXXXXX,
-    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,              /**/ KC_F12,            XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
-    KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            DM_REC1,        DM_REC2,        DM_RSTP,        KC_LCTL,
-                                                    MO(_NUMPAD),   KC_LALT,            /**/ KC_TAB,            TO(_MAIN)
+    KC_1,           KC_2,           KC_3,           KC_4,           KC_PAUSE,           /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        XXXXXXX,
+    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,              /**/ KC_F12,            KC_MPRV,        KC_MPLY,        KC_MUTE,        KC_MNXT,
+    KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            XXXXXXX,        XXXXXXX,        KC_VOLD,        KC_LCTL,
+                                                    MO(_NUMPAD),    KC_LALT,            /**/ KC_TAB,            TO(_MAIN)
   ),
   [_NUMPAD] = LAYOUT_split_3x5_2(
     KC_Q,           KC_M,           KC_F,           KC_P,           KC_T,               /**/ TD(DANCE_INS),     KC_KP_7,        KC_KP_8,        KC_KP_9,        KC_KP_MINUS,
@@ -108,10 +108,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     _______,        KC_LALT,            /**/ _______,           KC_KP_0
   ),
   [_MACRO] = LAYOUT_split_3x5_2(
-    KC_AUDIO_MUTE,  KC_VOLU,        DM_PLY1,        DM_PLY2,        XXXXXXX,            /**/ XXXXXXX,           KC_CALCULATOR,  XXXXXXX,        XXXXXXX,        XXXXXXX,
+    XXXXXXX,        DM_REC1,        DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           KC_CALCULATOR,  XXXXXXX,        XXXXXXX,        XXXXXXX,
     KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_6,              KC_7,           KC_8,           KC_9,           KC_0,
-    KC_MPRV,        KC_VOLD,        KC_MNXT,        KC_MPLY,        XXXXXXX,            /**/ KC_BSPC,           KC_DELETE,      KC_COMMA,       KC_DOT,         KC_SLASH,
-	                                                  LALT(KC_LEFT),  LALT(KC_RIGHT),     /**/ _______,           _______
+    DM_RSTP,        DM_PLY1,        DM_PLY2,        XXXXXXX,        XXXXXXX,            /**/ KC_BSPC,           KC_DELETE,      KC_COMMA,       KC_DOT,         KC_SLASH,
+	                                            LALT(KC_LEFT),  LALT(KC_RIGHT),     /**/ _______,           _______
   ),
 };
 
