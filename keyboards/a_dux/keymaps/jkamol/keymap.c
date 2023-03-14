@@ -20,39 +20,39 @@ enum combo_events {
     ENTER,
     ESC,
     FLIP,
-    CH_LANG,
-    GV_MACRO,
-    MK_MACRO,
-    MACRO,
+    FN_TO,
+    LANG_SW,
+    MACRO_CR,
+    MACRO_LT,
+    MACRO_RT,
     NUM_MO,
     NUM_TO,
-    FN_TO,
     COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM enter_combo[]  = {LALT_T(KC_R), KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM escape_combo[] = {KC_W, KC_F, KC_P, COMBO_END};
-const uint16_t PROGMEM flip_combo[]   = {LCTL_T(KC_TAB), LT(_SYM,KC_SPACE), COMBO_END};
-const uint16_t PROGMEM gv_combo[]     = {KC_G, LGUI_T(KC_V), COMBO_END};
-const uint16_t PROGMEM lang_combo[]   = {LSFT_T(KC_A), LALT_T(KC_R), COMBO_END};
-const uint16_t PROGMEM mk_combo[]     = {KC_M, RGUI_T(KC_K), COMBO_END};
-const uint16_t PROGMEM macro_combo[]  = {LT(_SYM,KC_SPACE), LT(3,KC_BSPC), COMBO_END};
-const uint16_t PROGMEM num_mo_combo[] = {KC_T, KC_D, COMBO_END};
-const uint16_t PROGMEM num_to_combo[] = {KC_T, KC_D, KC_G, LGUI_T(KC_V), COMBO_END};
-const uint16_t PROGMEM fn_to_combo[]  = {KC_N, KC_H, KC_M, RGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM escape_combo[]   = {KC_W, KC_F, KC_P, COMBO_END};
+const uint16_t PROGMEM flip_combo[]     = {LCTL_T(KC_TAB), LT(_SYM,KC_SPACE), COMBO_END};
+const uint16_t PROGMEM fn_to_combo[]    = {KC_N, KC_H, KC_M, RGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM lang_sw_combo[]  = {LSFT_T(KC_A), LALT_T(KC_R), COMBO_END};
+const uint16_t PROGMEM macro_cr_combo[] = {LT(_SYM,KC_SPACE), LT(3,KC_BSPC), COMBO_END};
+const uint16_t PROGMEM macro_lt_combo[] = {KC_G, LGUI_T(KC_V), COMBO_END};
+const uint16_t PROGMEM macro_rt_combo[] = {KC_M, RGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM num_mo_combo[]   = {KC_T, KC_D, COMBO_END};
+const uint16_t PROGMEM num_to_combo[]   = {KC_T, KC_D, KC_G, LGUI_T(KC_V), COMBO_END};
 
 combo_t key_combos[] = {
     [ENTER]    = COMBO(enter_combo, KC_ENTER),
     [ESC]      = COMBO(escape_combo, KC_ESCAPE),
     [FLIP]     = COMBO(flip_combo, SH_OS),
-    [CH_LANG]  = COMBO(lang_combo, LALT(KC_LSFT)),
-    [GV_MACRO] = COMBO(gv_combo, MO(_MACRO)),
-    [MK_MACRO] = COMBO(mk_combo, MO(_MACRO)),
-    [MACRO]    = COMBO(macro_combo, MO(_MACRO)),
+    [FN_TO]    = COMBO(fn_to_combo, TO(_FN)),
+    [LANG_SW]  = COMBO(lang_sw_combo, LALT(KC_LSFT)),
+    [MACRO_CR] = COMBO(macro_cr_combo, MO(_MACRO)),
+    [MACRO_LT] = COMBO(macro_lt_combo, MO(_MACRO)),
+    [MACRO_RT] = COMBO(macro_rt_combo, MO(_MACRO)),
     [NUM_MO]   = COMBO(num_mo_combo, MO(_NUMPAD)),
     [NUM_TO]   = COMBO(num_to_combo, TO(_NUMPAD)),
-    [FN_TO]    = COMBO(fn_to_combo, TO(_FN)),
 };
 
 enum tap_dance_codes {
