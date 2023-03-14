@@ -31,8 +31,8 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM enter_combo[]  = {LALT_T(KC_R), KC_S, COMBO_END};
-const uint16_t PROGMEM escape_combo[] = {KC_W, KC_F, COMBO_END};
+const uint16_t PROGMEM enter_combo[]  = {LALT_T(KC_R), KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM escape_combo[] = {KC_W, KC_F, KC_P, COMBO_END};
 const uint16_t PROGMEM flip_combo[]   = {LCTL_T(KC_TAB), LT(_SYM,KC_SPACE), COMBO_END};
 const uint16_t PROGMEM gv_combo[]     = {KC_G, LGUI_T(KC_V), COMBO_END};
 const uint16_t PROGMEM lang_combo[]   = {LSFT_T(KC_A), LALT_T(KC_R), COMBO_END};
