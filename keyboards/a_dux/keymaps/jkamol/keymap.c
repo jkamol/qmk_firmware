@@ -17,9 +17,6 @@ enum layer_names {
 };
 
 enum combo_events {
-    LPAR,
-    RPAR,
-    ALT_TAB,
     ENTER,
     ESC,
     FLIP,
