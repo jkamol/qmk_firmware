@@ -4,8 +4,11 @@
     "editor.insertSpaces": true,
     // Configure glob patterns for excluding files and folders.
     "files.exclude": {
-        "**/.build": true,
-        "**/*.hex": true,
+        // "**/.build": true,
+        "**/.build/obj*": true,
+        "**/.build/*.elf": true,
+        "**/.build/*.map": true,
+        // "**/*.hex": true,
         "**/*.bin": true,
         "**/*.uf2": true
     },
@@ -29,5 +32,9 @@
     "python.formatting.provider": "yapf",
     "[json]": {
 	    "editor.formatOnSave": false
-    }
+    },
+    "githubIssues.ignoreMilestones": [
+
+
+    ]
 }
