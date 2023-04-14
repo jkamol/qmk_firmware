@@ -9,6 +9,7 @@
 enum layer_names {
     _MAIN,
     _QWERTY,
+    _SHCT,
     _SYM,
     _NAV,
     _FN,
@@ -19,7 +20,7 @@ enum layer_names {
 enum combo_events {
     ENTER,
     ESC,
-    FLIP,
+    SHORTCUT,
     FN_TO,
     LANG_SW,
     MACRO_CR,
@@ -32,20 +33,20 @@ enum combo_events {
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
 const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM escape_combo[]   = {KC_L, KC_Y, KC_P, COMBO_END};
-const uint16_t PROGMEM flip_combo[]     = {LCTL_T(KC_TAB), LT(_SYM,KC_SPACE), COMBO_END};
-const uint16_t PROGMEM fn_to_combo[]    = {KC_N, KC_H, KC_M, RGUI_T(KC_X), COMBO_END};
-const uint16_t PROGMEM lang_sw_combo[]  = {LSFT_T(KC_C), LALT_T(KC_R), COMBO_END};
-const uint16_t PROGMEM macro_cr_combo[] = {LT(_SYM,KC_SPACE), LT(3,KC_BSPC), COMBO_END};
-const uint16_t PROGMEM macro_lt_combo[] = {KC_G, LGUI_T(KC_K), COMBO_END};
-const uint16_t PROGMEM macro_rt_combo[] = {KC_M, RGUI_T(KC_X), COMBO_END};
-const uint16_t PROGMEM num_mo_combo[]   = {KC_T, KC_D, COMBO_END};
-const uint16_t PROGMEM num_to_combo[]   = {KC_T, KC_D, KC_G, LGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM escape_combo[]   = {MEH_T(KC_L), KC_D, KC_C, COMBO_END};
+const uint16_t PROGMEM shct_combo[]     = {LCTL_T(KC_BSPC), LT(_SYM,KC_SPACE), COMBO_END};
+const uint16_t PROGMEM fn_to_combo[]    = {KC_H, KC_Y, KC_M, RGUI_T(KC_SCLN), COMBO_END};
+const uint16_t PROGMEM lang_sw_combo[]  = {LSFT_T(KC_N), LALT_T(KC_R), COMBO_END};
+const uint16_t PROGMEM macro_cr_combo[] = {LCTL(KC_BSPC), LT(_NAV,KC_E), COMBO_END};
+const uint16_t PROGMEM macro_lt_combo[] = {KC_G, LGUI_T(KC_X), COMBO_END};
+const uint16_t PROGMEM macro_rt_combo[] = {KC_M, RGUI_T(KC_SCLN), COMBO_END};
+const uint16_t PROGMEM num_mo_combo[]   = {KC_T, KC_W, COMBO_END};
+const uint16_t PROGMEM num_to_combo[]   = {KC_T, KC_W, KC_G, LGUI_T(KC_X), COMBO_END};
 
 combo_t key_combos[] = {
     [ENTER]    = COMBO(enter_combo, KC_ENTER),
     [ESC]      = COMBO(escape_combo, KC_ESCAPE),
-    [FLIP]     = COMBO(flip_combo, SH_OS),
+    [SHORTCUT] = COMBO(shct_combo, MO(_SHCT)),
     [FN_TO]    = COMBO(fn_to_combo, TO(_FN)),
     [LANG_SW]  = COMBO(lang_sw_combo, LALT(KC_LSFT)),
     [MACRO_CR] = COMBO(macro_cr_combo, MO(_MACRO)),
@@ -69,10 +70,10 @@ enum tap_dance_codes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_split_3x5_2(
-        C_S_T(KC_W),    KC_L,           KC_Y,           KC_P,           RALT_T(KC_B),       /**/ RALT_T(KC_Z),      KC_F,           KC_O,           KC_U,           C_S_T(KC_QUOTE),
-        LSFT_T(KC_C),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_E,           KC_I,           LSFT_T(KC_A),
-        LCTL_T(KC_Q),   KC_J,           KC_V,           KC_D,           LGUI_T(KC_K),       /**/ RGUI_T(KC_X),      KC_H,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
-                                                        LCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_BSPC),  LT(_FN,KC_ENTER)
+        C_S_T(KC_B),    MEH_T(KC_L),    KC_D,           KC_C,           RALT_T(KC_Z),       /**/ RALT_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
+        LSFT_T(KC_N),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,               /**/ KC_M,              KC_H,           KC_A,           KC_I,           LSFT_T(KC_P),
+        LCTL_T(KC_Q),   KC_K,           KC_V,           KC_W,           LGUI_T(KC_X),       /**/ RGUI_T(KC_SCLN),   KC_Y,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
+                                                        LCTL_T(KC_BSPC), LT(_SYM,KC_SPACE), /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
     ),
     [_QWERTY] = LAYOUT_split_3x5_2(
         C_S_T(KC_Q),    KC_W,           KC_E,           KC_R,           RALT_T(KC_T),       /**/ RALT_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P),
@@ -80,10 +81,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           LGUI_T(KC_B),       /**/ RGUI_T(KC_N),      KC_M,           KC_COMMA,       KC_DOT,         LCTL_T(KC_SLASH),
                                                         _______,        _______,            /**/ _______,           _______
     ),
+    [_SHCT] = LAYOUT_split_3x5_2(
+        C(KC_W),        C(KC_L),        C(KC_D),        C(KC_F),        C(KC_G),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        C(KC_A),        KC_LALT,        KC_LCTL,        KC_TAB,         S(KC_TAB),          /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        C(KC_Z),        C(KC_X),        C(KC_C),        C(KC_V),        C(KC_Y),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+                                                        XXXXXXX,        XXXXXXX,            /**/ _______,           _______
+    ),
     [_SYM] = LAYOUT_split_3x5_2(
         TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
         LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_GRAVE,          KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       LSFT_T(KC_SCLN),
-        TD(DANCE_UNDO), KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         LCTL(KC_Y),         /**/ KC_PERCENT,        KC_LBRC,        KC_BACKSLASH,   KC_EXCLAIM,     LCTL_T(KC_RBRC),
+        TD(DANCE_UNDO), KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         C(KC_Y),            /**/ KC_PERCENT,        KC_LBRC,        KC_BACKSLASH,   KC_EXCLAIM,     LCTL_T(KC_RBRC),
                                                         MO(_FN),        XXXXXXX,            /**/ _______,           _______
     ),
     [_NAV] = LAYOUT_split_3x5_2(
