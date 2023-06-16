@@ -4,11 +4,8 @@
     "editor.insertSpaces": true,
     // Configure glob patterns for excluding files and folders.
     "files.exclude": {
-        // "**/.build": true,
-        "**/.build/obj*": true,
-        "**/.build/*.elf": true,
-        "**/.build/*.map": true,
-        // "**/*.hex": true,
+        "**/.build": true,
+        "**/*.hex": true,
         "**/*.bin": true,
         "**/*.uf2": true
     },
@@ -21,9 +18,7 @@
         "xstddef": "c",
         "type_traits": "c",
         "utility": "c",
-        "ranges": "c",
-        "bitset": "c",
-        "chrono": "c"
+        "ranges": "c"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
@@ -31,10 +26,9 @@
     },
     "python.formatting.provider": "yapf",
     "[json]": {
-	    "editor.formatOnSave": false
+        "editor.formatOnSave": false
     },
-    "githubIssues.ignoreMilestones": [
-
-
+    "clangd.arguments": [
+        "--header-insertion=never"
     ]
 }
