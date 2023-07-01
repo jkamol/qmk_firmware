@@ -86,14 +86,14 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 
 const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM escape_combo[]   = {KC_L, KC_D, KC_P, COMBO_END};
-const uint16_t PROGMEM shct_combo[]     = {LCTL_T(KC_TAB), LT(_SYM,KC_SPACE), COMBO_END};
+const uint16_t PROGMEM shct_combo[]     = {LT(_SYM,KC_SPACE), LCTL_T(KC_TAB), COMBO_END};
 const uint16_t PROGMEM fn_to_combo[]    = {KC_N, KC_H, KC_M, RGUI_T(KC_SCLN), COMBO_END};
 const uint16_t PROGMEM lang_sw_combo[]  = {LSFT_T(KC_C), LALT_T(KC_R), COMBO_END};
 const uint16_t PROGMEM macro_cr_combo[] = {LT(_SYM,KC_SPACE), LT(_NAV,KC_E), COMBO_END};
-const uint16_t PROGMEM macro_lt_combo[] = {KC_G, LGUI_T(KC_Q), COMBO_END};
+const uint16_t PROGMEM macro_lt_combo[] = {KC_G, LGUI_T(KC_K), COMBO_END};
 const uint16_t PROGMEM macro_rt_combo[] = {KC_M, RGUI_T(KC_SCLN), COMBO_END};
-const uint16_t PROGMEM num_mo_combo[]   = {KC_T, KC_K, COMBO_END};
-const uint16_t PROGMEM num_to_combo[]   = {KC_T, KC_K, KC_G, LGUI_T(KC_Q), COMBO_END};
+const uint16_t PROGMEM num_mo_combo[]   = {KC_T, KC_W, COMBO_END};
+const uint16_t PROGMEM num_to_combo[]   = {KC_T, KC_W, KC_G, LGUI_T(KC_K), COMBO_END};
 const uint16_t PROGMEM tab_combo[]      = {KC_P, KC_T, COMBO_END};
 
 
@@ -125,10 +125,10 @@ enum tap_dance_codes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_split_3x5_2(
-        C_S_T(KC_W),    KC_L,           KC_D,           KC_P,           RALT_T(KC_B),       /**/ RALT_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
+        C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           RALT_T(KC_B),       /**/ RALT_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
         LSFT_T(KC_C),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
-        LCTL_T(KC_Z),   KC_X,           KC_V,           KC_K,           LGUI_T(KC_Q),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
-                                                        LCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
+        LCTL_T(KC_Z),   KC_X,           KC_V,           KC_W,           LGUI_T(KC_K),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
+                                                        LT(_SYM,KC_SPACE), LCTL_T(KC_TAB),  /**/ LT(_FN,KC_ENTER),  LT(_NAV,KC_E)
     ),
     [_QWERTY] = LAYOUT_split_3x5_2(
         C_S_T(KC_Q),    KC_W,           KC_E,           KC_R,           RALT_T(KC_T),       /**/ RALT_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P),
@@ -146,25 +146,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
         LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_GRAVE,          KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       LSFT_T(KC_SCLN),
         TD(DANCE_UNDO), KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         C(KC_Y),            /**/ KC_PERCENT,        KC_LBRC,        KC_BACKSLASH,   KC_EXCLAIM,     LCTL_T(KC_RBRC),
-                                                        MO(_FN),        XXXXXXX,            /**/ _______,           _______
+                                                        XXXXXXX,        MO(_FN),            /**/ _______,           _______
     ),
     [_NAV] = LAYOUT_split_3x5_2(
         TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_LCTL,        KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_LCTL,
-                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ XXXXXXX,           KC_LALT
+                                                        KC_MS_BTN1,     KC_MS_BTN2,         /**/ KC_LALT,           XXXXXXX
     ),
     [_FN] = LAYOUT_split_3x5_2(
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        KC_PAUSE,
         KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,              /**/ KC_F12,            KC_MPRV,        KC_MPLY,        KC_MUTE,        KC_MNXT,
         KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            XXXXXXX,        XXXXXXX,        KC_VOLD,        KC_LCTL,
-                                                        MO(_NUMPAD),    KC_LALT,            /**/ KC_TAB,            TO(_MAIN)
+                                                        KC_LALT,        MO(_NUMPAD),        /**/ TO(_MAIN),         KC_TAB
     ),
     [_NUMPAD] = LAYOUT_split_3x5_2(
         KC_Q,           KC_M,           KC_F,           KC_P,           KC_T,               /**/ TD(DANCE_NLK),     KC_KP_7,        KC_KP_8,        KC_KP_9,        KC_KP_MINUS,
         KC_1,           KC_2,           KC_3,           KC_4,           TD(DANCE_MAIN),     /**/ KC_KP_PLUS,        KC_KP_4,        KC_KP_5,        KC_KP_6,        KC_KP_DOT,
         LCTL_T(KC_Z),   KC_X,           KC_C,           KC_S,           KC_B,               /**/ KC_BSPC,           KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_SLASH,
-                                                        _______,        KC_LALT,            /**/ _______,           KC_KP_0
+                                                        KC_LALT,        _______,            /**/ _______,           KC_KP_0
     ),
     [_MACRO] = LAYOUT_split_3x5_2(
         XXXXXXX,        DM_REC1,        DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           KC_CALCULATOR,  XXXXXXX,        XXXXXXX,        XXXXXXX,
