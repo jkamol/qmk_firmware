@@ -125,13 +125,13 @@ enum tap_dance_codes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_split_3x5_2(
-        C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           RALT_T(KC_B),       /**/ RALT_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
+        C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           ALGR_T(KC_B),       /**/ ALGR_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
         LSFT_T(KC_C),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
         LCTL_T(KC_Z),   KC_X,           KC_V,           KC_W,           LGUI_T(KC_K),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
                                                         LT(_SYM,KC_SPACE), LCTL_T(KC_TAB),  /**/ LT(_FN,KC_ENTER),  LT(_NAV,KC_E)
     ),
     [_QWERTY] = LAYOUT_split_3x5_2(
-        C_S_T(KC_Q),    KC_W,           KC_E,           KC_R,           RALT_T(KC_T),       /**/ RALT_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P),
+        C_S_T(KC_Q),    KC_W,           KC_E,           KC_R,           ALGR_T(KC_T),       /**/ ALGR_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P),
         LSFT_T(KC_A),   LALT_T(KC_S),   KC_D,           KC_F,           KC_G,               /**/ KC_H,              KC_J,           KC_K,           KC_L,           LSFT_T(KC_SCLN),
         LCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           LGUI_T(KC_B),       /**/ RGUI_T(KC_N),      KC_M,           KC_COMMA,       KC_DOT,         LCTL_T(KC_SLASH),
                                                         _______,        _______,            /**/ _______,           _______
@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         XXXXXXX,        MO(_FN),            /**/ _______,           _______
     ),
     [_NAV] = LAYOUT_split_3x5_2(
-        TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
+        TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_ALGR,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_LCTL,        KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_LCTL,
                                                         KC_MS_BTN1,     KC_MS_BTN2,         /**/ KC_LALT,           XXXXXXX
@@ -167,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         KC_LALT,        _______,            /**/ _______,           KC_KP_0
     ),
     [_MACRO] = LAYOUT_split_3x5_2(
-        XXXXXXX,        DM_REC1,        DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           KC_CALCULATOR,  XXXXXXX,        XXXXXXX,        XXXXXXX,
+        XXXXXXX,        DM_REC1,        DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_6,              KC_7,           KC_8,           KC_9,           KC_0,
         DM_RSTP,        DM_PLY1,        DM_PLY2,        XXXXXXX,        XXXXXXX,            /**/ KC_BSPC,           KC_DELETE,      KC_SLASH,       KC_COMMA,       KC_DOT,
                                                         LALT(KC_LEFT),  LALT(KC_RIGHT),     /**/ _______,           _______
@@ -236,7 +236,7 @@ void DANCE_QUIT_finished(tap_dance_state_t *state, void *user_data) {
     tap_state.state = cur_dance(state);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:         register_code16(KC_6); break;
-        case TD_SINGLE_HOLD:        register_code16(LALT(KC_F4)); break;
+        case TD_SINGLE_HOLD:        register_code16(KC_6); break;
         case TD_DOUBLE_TAP:         register_code16(KC_6); register_code16(KC_6); break;
         case TD_DOUBLE_HOLD:        register_code16(LALT(KC_F4)); break;
         case TD_DOUBLE_SINGLE_TAP:  tap_code16(KC_6); register_code16(KC_6); break;
@@ -248,7 +248,7 @@ void DANCE_QUIT_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:         unregister_code16(KC_6); break;
-        case TD_SINGLE_HOLD:        unregister_code16(LALT(KC_F4)); break;
+        case TD_SINGLE_HOLD:        unregister_code16(KC_6); break;
         case TD_DOUBLE_TAP:         unregister_code16(KC_6); break;
         case TD_DOUBLE_HOLD:        unregister_code16(LALT(KC_F4)); break;
         case TD_DOUBLE_SINGLE_TAP:  unregister_code16(KC_6); break;
@@ -370,6 +370,7 @@ void DANCE_PWR_reset(tap_dance_state_t *state, void *user_data);
 void DANCE_PWR_finished(tap_dance_state_t *state, void *user_data) {
     tap_state.state = cur_dance(state);
     switch (tap_state.state) {
+        case TD_SINGLE_TAP:         register_code16(KC_CALCULATOR); break;
         case TD_DOUBLE_HOLD:        register_code16(KC_SYSTEM_POWER); break;
         default: break;
     }
@@ -378,6 +379,7 @@ void DANCE_PWR_finished(tap_dance_state_t *state, void *user_data) {
 void DANCE_PWR_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (tap_state.state) {
+        case TD_SINGLE_TAP:         unregister_code16(KC_CALCULATOR); break;
         case TD_DOUBLE_HOLD:        unregister_code16(KC_SYSTEM_POWER); break;
         default: break;
     }
