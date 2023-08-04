@@ -152,12 +152,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_ALGR,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_LCTL,        KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_LCTL,
-                                                        KC_MS_BTN1,     KC_MS_BTN2,         /**/ KC_LALT,           XXXXXXX
+                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ KC_LALT,           XXXXXXX
     ),
     [_FN] = LAYOUT_split_3x5_2(
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        KC_PAUSE,
         KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,              /**/ KC_F12,            KC_MPRV,        KC_MPLY,        KC_MUTE,        KC_MNXT,
-        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            XXXXXXX,        XXXXXXX,        KC_VOLD,        KC_LCTL,
+        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            XXXXXXX,        KC_MEH,         KC_VOLD,        KC_LCTL,
                                                         KC_LALT,        MO(_NUMPAD),        /**/ TO(_MAIN),         KC_TAB
     ),
     [_NUMPAD] = LAYOUT_split_3x5_2(
