@@ -147,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         MO(_FN),        XXXXXXX,            /**/ _______,           _______
     ),
     [_NAV] = LAYOUT_split_3x5_2(
-        TD(DANCE_QWERTY), KC_MS_WH_UP,  KC_MS_UP,       KC_MS_BTN3,     KC_ALGR,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
+        LCTL(KC_LSFT),  KC_MS_WH_UP,    KC_MS_UP,       KC_MS_BTN3,     KC_ALGR,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_LCTL,        KC_MS_WH_DOWN,  KC_MS_WH_LEFT,  KC_MS_WH_RIGHT, KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_LCTL,
                                                         KC_MS_BTN1,     KC_MS_BTN2,         /**/ XXXXXXX,           KC_LALT
@@ -165,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,        KC_LALT,            /**/ _______,           KC_KP_0
     ),
     [_MACRO] = LAYOUT_split_3x5_2(
-        XXXXXXX,        DM_REC1,        DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        TD(DANCE_QWERTY), DM_REC1,      DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_6,              KC_7,           KC_8,           KC_9,           KC_0,
         DM_RSTP,        DM_PLY1,        DM_PLY2,        XXXXXXX,        XXXXXXX,            /**/ KC_BSPC,           KC_DELETE,      KC_SLASH,       KC_COMMA,       KC_DOT,
                                                         LALT(KC_LEFT),  LALT(KC_RIGHT),     /**/ _______,           _______
