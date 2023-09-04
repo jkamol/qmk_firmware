@@ -83,7 +83,7 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), KC_S, COMBO_END};
+const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), LCTL_T(KC_S), COMBO_END};
 const uint16_t PROGMEM escape_combo[]   = {KC_L, KC_D, COMBO_END};
 const uint16_t PROGMEM shct_combo[]     = {LT(_SYM,KC_SPACE), LCTL_T(KC_TAB), COMBO_END};
 const uint16_t PROGMEM fn_to_combo[]    = {KC_N, KC_H, KC_M, RGUI_T(KC_SCLN), COMBO_END};
@@ -124,7 +124,7 @@ enum tap_dance_codes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_split_3x5_2(
         C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           ALGR_T(KC_B),       /**/ ALGR_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
-        LSFT_T(KC_C),   LALT_T(KC_R),   KC_S,           KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
+        LSFT_T(KC_C),   LALT_T(KC_R),   LCTL_T(KC_S),   KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
         LCTL_T(KC_Z),   KC_X,           KC_V,           KC_W,           LGUI_T(KC_K),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
                                                         LCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
     ),
