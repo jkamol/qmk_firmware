@@ -7,3 +7,4 @@
 #define MK_COMBINED
 
 #define MOUSEKEY_INTERVAL 24
+#define NO_ALT_REPEAT_KEY
