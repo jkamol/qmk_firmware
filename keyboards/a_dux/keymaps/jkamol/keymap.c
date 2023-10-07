@@ -17,13 +17,15 @@ enum layer_names {
     _MACRO,
 };
 
-// Start Super ALT↯TAB
+// Start Super ALT↯TAB and Mac/Win mode
 bool is_alt_tab_active = false; // ADD this near the beginning of keymap.c
 uint16_t alt_tab_timer = 0;     // we will be using them soon.
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
   ALT_TAB = SAFE_RANGE,
   ALT_SFT_TAB,
+  MAC_MODE,
+  WIN_MODE,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -54,6 +56,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_TAB);
       }
       break;
+    case MAC_MODE:
+      if (record->event.pressed) {
+        keymap_config.swap_lalt_lgui = true;
+        keymap_config.swap_rctl_rgui = true;
+      }
+      break;
+    case WIN_MODE:
+      if (record->event.pressed) {
+        keymap_config.swap_lalt_lgui = false;
+        keymap_config.swap_rctl_rgui = false;
+      }
+      break;
   }
   return true;
 }
@@ -66,7 +80,7 @@ void matrix_scan_user(void) { // The very important timer.
     }
   }
 }
-// End Super ALT↯TAB
+// End Super ALT↯TAB and Mac/Win mode
 
 enum combo_events {
     ENTER,
@@ -83,9 +97,9 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), LCTL_T(KC_S), COMBO_END};
+const uint16_t PROGMEM enter_combo[]    = {LALT_T(KC_R), RCTL_T(KC_S), COMBO_END};
 const uint16_t PROGMEM escape_combo[]   = {KC_L, KC_D, COMBO_END};
-const uint16_t PROGMEM shct_combo[]     = {LT(_SYM,KC_SPACE), LCTL_T(KC_TAB), COMBO_END};
+const uint16_t PROGMEM shct_combo[]     = {LT(_SYM,KC_SPACE), RCTL_T(KC_TAB), COMBO_END};
 const uint16_t PROGMEM fn_to_combo[]    = {KC_N, KC_H, KC_M, RGUI_T(KC_SCLN), COMBO_END};
 const uint16_t PROGMEM lang_sw_combo[]  = {LSFT_T(KC_C), LALT_T(KC_R), COMBO_END};
 const uint16_t PROGMEM macro_cr_combo[] = {LT(_SYM,KC_SPACE), LT(_NAV,KC_E), COMBO_END};
@@ -121,14 +135,14 @@ enum tap_dance_codes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_split_3x5_2(
         C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           ALGR_T(KC_B),       /**/ ALGR_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
-        LSFT_T(KC_C),   LALT_T(KC_R),   LCTL_T(KC_S),   KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
-        LCTL_T(KC_Z),   KC_X,           KC_V,           KC_W,           LGUI_T(KC_K),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       LCTL_T(KC_DOT),
-                                                        LCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
+        LSFT_T(KC_C),   LALT_T(KC_R),   RCTL_T(KC_S),   KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
+        RCTL_T(KC_Z),   KC_X,           KC_V,           KC_W,           LGUI_T(KC_K),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       RCTL_T(KC_DOT),
+                                                        RCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
     ),
     [_QWERTY] = LAYOUT_split_3x5_2(
         C_S_T(KC_Q),    KC_W,           KC_E,           KC_R,           ALGR_T(KC_T),       /**/ ALGR_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P),
         LSFT_T(KC_A),   LALT_T(KC_S),   KC_D,           KC_F,           KC_G,               /**/ KC_H,              KC_J,           KC_K,           KC_L,           LSFT_T(KC_SCLN),
-        LCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           LGUI_T(KC_B),       /**/ RGUI_T(KC_N),      KC_M,           KC_COMMA,       KC_DOT,         LCTL_T(KC_SLASH),
+        RCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           LGUI_T(KC_B),       /**/ RGUI_T(KC_N),      KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),
                                                         _______,        _______,            /**/ _______,           _______
     ),
     [_SHORTCUT] = LAYOUT_split_3x5_2(
@@ -140,29 +154,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SYM] = LAYOUT_split_3x5_2(
         TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
         LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_GRAVE,          KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       LSFT_T(KC_SCLN),
-        LCTL_T(KC_DOT), KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         QK_REP,             /**/ KC_PERCENT,        KC_LBRC,        KC_BACKSLASH,   KC_EXCLAIM,     LCTL_T(KC_RBRC),
+        RCTL_T(KC_DOT), KC_BSPC,        TD(DANCE_SCR),  KC_DEL,         QK_REP,             /**/ KC_PERCENT,        KC_LBRC,        KC_BACKSLASH,   KC_EXCLAIM,     RCTL_T(KC_RBRC),
                                                         MO(_FN),        XXXXXXX,            /**/ MO(_MACRO),        _______
     ),
     [_NAV] = LAYOUT_split_3x5_2(
-        LCTL(KC_LSFT),  KC_MS_WH_UP,    KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
+        RCTL(KC_LSFT),  KC_MS_WH_UP,    KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
-        KC_LCTL,        KC_MS_WH_DOWN,  C(KC_C),        C(KC_V),        KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_LCTL,
+        KC_RCTL,        KC_MS_WH_DOWN,  C(KC_C),        C(KC_V),        KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_RCTL,
                                                         KC_MS_BTN1,     KC_MS_BTN2,         /**/ XXXXXXX,           KC_LALT
     ),
     [_FN] = LAYOUT_split_3x5_2(
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        KC_PAUSE,
         KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,              /**/ KC_F12,            KC_MPRV,        KC_MPLY,        KC_MUTE,        KC_MNXT,
-        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            XXXXXXX,        KC_MEH,         KC_VOLD,        KC_LCTL,
+        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,             /**/ KC_F11,            XXXXXXX,        KC_MEH,         KC_VOLD,        KC_RCTL,
                                                         MO(_NUMPAD),    KC_LALT,            /**/ KC_TAB,            TO(_MAIN)
     ),
     [_NUMPAD] = LAYOUT_split_3x5_2(
         KC_Q,           KC_M,           KC_F,           KC_P,           KC_T,               /**/ TD(DANCE_NLK),     KC_KP_7,        KC_KP_8,        KC_KP_9,        KC_KP_MINUS,
         KC_1,           KC_2,           KC_3,           KC_4,           TD(DANCE_MAIN),     /**/ KC_KP_PLUS,        KC_KP_4,        KC_KP_5,        KC_KP_6,        KC_KP_DOT,
-        LCTL_T(KC_Z),   KC_X,           KC_C,           KC_S,           KC_B,               /**/ KC_BSPC,           KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_SLASH,
+        RCTL_T(KC_Z),   KC_X,           KC_C,           KC_S,           KC_B,               /**/ KC_BSPC,           KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_SLASH,
                                                         _______,        KC_LALT,            /**/ KC_KP_0,           _______
     ),
     [_MACRO] = LAYOUT_split_3x5_2(
-        TD(DANCE_QWERTY), DM_REC1,      DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        TD(DANCE_QWERTY), DM_REC1,      DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           MAC_MODE,       WIN_MODE,       XXXXXXX,        XXXXXXX,
         LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_6,              KC_7,           KC_8,           KC_9,           LSFT_T(KC_0),
         DM_RSTP,        DM_PLY1,        DM_PLY2,        XXXXXXX,        XXXXXXX,            /**/ KC_BSPC,           KC_DELETE,      KC_SLASH,       KC_COMMA,       KC_DOT,
                                                         LALT(KC_LEFT),  LALT(KC_RIGHT),     /**/ _______,           _______
