@@ -134,7 +134,7 @@ enum tap_dance_codes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_split_3x5_2(
-        C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           ALGR_T(KC_B),       /**/ ALGR_T(KC_QUOTE),  KC_F,           KC_O,           KC_U,           C_S_T(KC_J),
+        C_S_T(KC_Q),    KC_L,           KC_D,           KC_P,           ALGR_T(KC_B),       /**/ ALGR_T(KC_J),      KC_F,           KC_O,           KC_U,           C_S_T(KC_QUOTE),
         LSFT_T(KC_C),   LALT_T(KC_R),   RCTL_T(KC_S),   KC_T,           KC_G,               /**/ KC_M,              KC_N,           KC_A,           KC_I,           LSFT_T(KC_Y),
         RCTL_T(KC_Z),   KC_X,           KC_V,           KC_W,           LGUI_T(KC_K),       /**/ RGUI_T(KC_SCLN),   KC_H,           KC_SLASH,       KC_COMMA,       RCTL_T(KC_DOT),
                                                         RCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
@@ -374,9 +374,9 @@ void DANCE_SCR_finished(tap_dance_state_t *state, void *user_data) {
     tap_state.state = cur_dance(state);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:         register_code16(KC_PRINT_SCREEN); break;
-        case TD_SINGLE_HOLD:        register_code16(LGUI(LSFT(KC_S))); break;
+        case TD_SINGLE_HOLD:        register_code16(LCTL(LSFT(KC_S))); break;
         case TD_DOUBLE_TAP:         register_code16(KC_PRINT_SCREEN); register_code16(KC_PRINT_SCREEN); break;
-        case TD_DOUBLE_HOLD:        register_code16(LGUI(LSFT(KC_S))); break;
+        case TD_DOUBLE_HOLD:        register_code16(LCTL(LSFT(KC_S))); break;
         case TD_DOUBLE_SINGLE_TAP:  tap_code16(KC_PRINT_SCREEN); register_code16(KC_PRINT_SCREEN); break;
         default: break;
     }
@@ -386,9 +386,9 @@ void DANCE_SCR_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:         unregister_code16(KC_PRINT_SCREEN); break;
-        case TD_SINGLE_HOLD:        unregister_code16(LGUI(LSFT(KC_S))); break;
+        case TD_SINGLE_HOLD:        unregister_code16(LCTL(LSFT(KC_S))); break;
         case TD_DOUBLE_TAP:         unregister_code16(KC_PRINT_SCREEN); break;
-        case TD_DOUBLE_HOLD:        unregister_code16(LGUI(LSFT(KC_S))); break;
+        case TD_DOUBLE_HOLD:        unregister_code16(LCTL(LSFT(KC_S))); break;
         case TD_DOUBLE_SINGLE_TAP:  unregister_code16(KC_PRINT_SCREEN); break;
         default: break;
     }
