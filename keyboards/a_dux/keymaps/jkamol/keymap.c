@@ -146,9 +146,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,        _______,            /**/ _______,           _______
     ),
     [_SHORTCUT] = LAYOUT_split_3x5_2(
-        XXXXXXX,        KC_HOME,        KC_UP,          KC_END,         XXXXXXX,            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
-        C(KC_A),        KC_LEFT,        KC_DOWN,        KC_RIGHT,       XXXXXXX,            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
-        C(KC_Z),        C(KC_X),        C(KC_C),        C(KC_V),        C(KC_Y),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        XXXXXXX,        KC_HOME,        KC_UP,          KC_END,         KC_MS_BTN2,         /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        C(KC_A),        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_MS_BTN1,         /**/ XXXXXXX,           KC_MS_BTN1,     KC_MS_BTN2,     XXXXXXX,        XXXXXXX,
+        C(KC_Z),        XXXXXXX,        LCAG(KC_V),     XXXXXXX,        C(KC_Y),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
                                                         XXXXXXX,        XXXXXXX,            /**/ _______,           _______
     ),
     [_SYM] = LAYOUT_split_3x5_2(
@@ -161,7 +161,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RCTL(KC_LSFT),  KC_MS_WH_UP,    KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_RCTL,        KC_MS_WH_DOWN,  C(KC_C),        C(KC_V),        KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_RCTL,
-                                                        KC_MS_BTN1,     KC_MS_BTN2,         /**/ XXXXXXX,           KC_LALT
+                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ XXXXXXX,           KC_LALT
     ),
     [_FN] = LAYOUT_split_3x5_2(
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        KC_PAUSE,
@@ -245,7 +245,7 @@ void DANCE_QUIT_finished(tap_dance_state_t *state, void *user_data) {
     tap_state.state = cur_dance(state);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:         register_code16(KC_6); break;
-        case TD_SINGLE_HOLD:        register_code16(KC_6); break;
+        case TD_SINGLE_HOLD:        register_code16(LALT(KC_F4)); break;
         case TD_DOUBLE_TAP:         register_code16(KC_6); register_code16(KC_6); break;
         case TD_DOUBLE_HOLD:        register_code16(LALT(KC_F4)); break;
         case TD_DOUBLE_SINGLE_TAP:  tap_code16(KC_6); register_code16(KC_6); break;
@@ -257,7 +257,7 @@ void DANCE_QUIT_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (tap_state.state) {
         case TD_SINGLE_TAP:         unregister_code16(KC_6); break;
-        case TD_SINGLE_HOLD:        unregister_code16(KC_6); break;
+        case TD_SINGLE_HOLD:        unregister_code16(LALT(KC_F4)); break;
         case TD_DOUBLE_TAP:         unregister_code16(KC_6); break;
         case TD_DOUBLE_HOLD:        unregister_code16(LALT(KC_F4)); break;
         case TD_DOUBLE_SINGLE_TAP:  unregister_code16(KC_6); break;
