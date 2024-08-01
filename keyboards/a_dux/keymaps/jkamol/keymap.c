@@ -93,6 +93,7 @@ enum combo_events {
     MACRO_RT,
     NUM_MO,
     NUM_TO,
+    LOCK_NAV,
     COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -107,6 +108,7 @@ const uint16_t PROGMEM macro_lt_combo[] = {KC_G, LGUI_T(KC_K), COMBO_END};
 const uint16_t PROGMEM macro_rt_combo[] = {KC_M, RGUI_T(KC_SCLN), COMBO_END};
 const uint16_t PROGMEM num_mo_combo[]   = {KC_T, KC_W, COMBO_END};
 const uint16_t PROGMEM num_to_combo[]   = {KC_T, KC_W, KC_G, LGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM lock_nav[]       = {LT(_NAV,KC_E), LT(_FN,KC_ENTER), COMBO_END};
 
 combo_t key_combos[] = {
     [ENTER]    = COMBO(enter_combo, KC_ENTER),
@@ -119,6 +121,7 @@ combo_t key_combos[] = {
     [MACRO_RT] = COMBO(macro_rt_combo, MO(_MACRO)),
     [NUM_MO]   = COMBO(num_mo_combo, MO(_NUMPAD)),
     [NUM_TO]   = COMBO(num_to_combo, TO(_NUMPAD)),
+    [LOCK_NAV] = COMBO(lock_nav, TO(_NAV)),
 };
 
 enum tap_dance_codes {
@@ -140,9 +143,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         RCTL_T(KC_TAB), LT(_SYM,KC_SPACE),  /**/ LT(_NAV,KC_E),     LT(_FN,KC_ENTER)
     ),
     [_QWERTY] = LAYOUT_split_3x5_2(
-        C_S_T(KC_Q),    KC_W,           KC_E,           KC_R,           ALGR_T(KC_T),       /**/ ALGR_T(KC_Y),      KC_U,           KC_I,           KC_O,           C_S_T(KC_P),
-        LSFT_T(KC_A),   LALT_T(KC_S),   KC_D,           KC_F,           KC_G,               /**/ KC_H,              KC_J,           KC_K,           KC_L,           LSFT_T(KC_SCLN),
-        RCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           LGUI_T(KC_B),       /**/ RGUI_T(KC_N),      KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),
+        KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,               /**/ KC_Y,              KC_U,           KC_I,           KC_O,           KC_P,
+        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,               /**/ KC_H,              KC_J,           KC_K,           KC_L,           KC_SCLN,
+        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,               /**/ KC_N,              KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,
                                                         _______,        _______,            /**/ _______,           _______
     ),
     [_SHORTCUT] = LAYOUT_split_3x5_2(
@@ -161,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RCTL(KC_LSFT),  KC_MS_WH_UP,    KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_RCTL,        KC_MS_WH_DOWN,  C(KC_C),        C(KC_V),        KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_RCTL,
-                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ XXXXXXX,           KC_LALT
+                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ TO(_MAIN),        KC_LALT
     ),
     [_FN] = LAYOUT_split_3x5_2(
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        KC_PAUSE,
