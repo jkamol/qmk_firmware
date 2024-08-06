@@ -179,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,        KC_LALT,            /**/ KC_KP_0,           _______
     ),
     [_MACRO] = LAYOUT_split_3x5_2(
-        TD(DANCE_QWERTY), DM_REC1,      DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           MAC_MODE,       WIN_MODE,       XXXXXXX,        XXXXXXX,
+        TD(DANCE_QWERTY), DM_REC1,      DM_REC2,        XXXXXXX,        XXXXXXX,            /**/ XXXXXXX,           MAC_MODE,       WIN_MODE,       XXXXXXX,        QK_SWAP_HANDS_TOGGLE,
         LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_6,              KC_7,           KC_8,           KC_9,           LSFT_T(KC_0),
         DM_RSTP,        DM_PLY1,        DM_PLY2,        XXXXXXX,        XXXXXXX,            /**/ KC_BSPC,           KC_DELETE,      KC_SLASH,       KC_COMMA,       RCTL_T(KC_DOT),
                                                         LALT(KC_LEFT),  LALT(KC_RIGHT),     /**/ _______,           _______
