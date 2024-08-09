@@ -155,16 +155,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         XXXXXXX,        XXXXXXX,            /**/ _______,           _______
     ),
     [_SYM] = LAYOUT_split_3x5_2(
-        TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_AT,          KC_HASH,        KC_DOLLAR,
-        LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_GRAVE,          KC_MINUS,       KC_ASTERISK,    KC_EQUAL,       LSFT_T(KC_SCLN),
-        RCTL_T(KC_KP_DOT), KC_BSPC,     TD(DANCE_SCR),  KC_DEL,         QK_REP,             /**/ KC_PERCENT,        KC_LBRC,        KC_BACKSLASH,   KC_EXCLAIM,     RCTL_T(KC_RBRC),
+        TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_PERCENT,     KC_ASTERISK,    KC_UNDERSCORE,  KC_DOLLAR,
+        LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_AMPERSAND,      KC_MINUS,       KC_AT,          KC_EQUAL,       LSFT_T(KC_GRAVE),
+        RCTL_T(KC_KP_DOT), KC_BSPC,     TD(DANCE_SCR),  KC_DEL,         QK_REP,             /**/ KC_EXCLAIM,        KC_HASH,        KC_BACKSLASH,   KC_LBRC,        RCTL_T(KC_RBRC),
                                                         MO(_FN),        XXXXXXX,            /**/ MO(_MACRO),        _______
     ),
     [_NAV] = LAYOUT_split_3x5_2(
         RCTL(KC_LSFT),  KC_MS_WH_UP,    KC_MS_UP,       KC_MS_BTN3,     KC_LALT,            /**/ KC_ACL0,           KC_APPLICATION, KC_UP,          KC_PAGE_UP,     KC_CAPS_LOCK,
         KC_LSFT,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_INSERT,          /**/ KC_HOME,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       LSFT_T(KC_END),
         KC_RCTL,        KC_MS_WH_DOWN,  C(KC_C),        C(KC_V),        KC_LGUI,            /**/ KC_BSPC,           KC_DELETE,      LALT(KC_LSFT),  KC_PAGE_DOWN,   KC_RCTL,
-                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ TO(_MAIN),        KC_LALT
+                                                        KC_MS_BTN2,     KC_MS_BTN1,         /**/ TO(_MAIN),         KC_ENTER
     ),
     [_FN] = LAYOUT_split_3x5_2(
         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_SCROLL_LOCK,    TD(DANCE_PWR),  LCA(KC_DELETE), KC_VOLU,        KC_PAUSE,
