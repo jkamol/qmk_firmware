@@ -155,8 +155,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         XXXXXXX,        XXXXXXX,            /**/ _______,           _______
     ),
     [_SYM] = LAYOUT_split_3x5_2(
-        TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_PERCENT,     KC_ASTERISK,    KC_UNDERSCORE,  KC_DOLLAR,
-        LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_AMPERSAND,      KC_MINUS,       KC_AT,          KC_EQUAL,       LSFT_T(KC_GRAVE),
+        TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_ASTERISK,    KC_UNDERSCORE,  KC_DOLLAR,
+        LSFT_T(KC_1),   KC_2,           KC_3,           KC_4,           KC_5,               /**/ KC_PERCENT,        KC_MINUS,       KC_AT,          KC_EQUAL,       LSFT_T(KC_GRAVE),
         RCTL_T(KC_KP_DOT), KC_BSPC,     TD(DANCE_SCR),  KC_DEL,         QK_REP,             /**/ KC_EXCLAIM,        KC_HASH,        KC_BACKSLASH,   KC_LBRC,        RCTL_T(KC_RBRC),
                                                         MO(_FN),        XXXXXXX,            /**/ MO(_MACRO),        _______
     ),
