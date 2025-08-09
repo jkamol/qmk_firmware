@@ -26,6 +26,7 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
   ALT_SFT_TAB,
   MAC_MODE,
   WIN_MODE,
+  SHCT_TG,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -66,6 +67,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         keymap_config.swap_lalt_lgui = false;
         keymap_config.swap_rctl_rgui = false;
+      }
+    case SHCT_TG:
+      if (record->event.pressed) {
+        if (layer_state_is(_SHORTCUT)) {
+          layer_move(_MAIN);
+        } else {
+          layer_move(_SHORTCUT);
+        }
       }
       break;
   }
@@ -113,7 +122,7 @@ const uint16_t PROGMEM lock_nav[]       = {LT(_NAV,KC_E), LT(_FN,KC_ENTER), COMB
 combo_t key_combos[] = {
     [ENTER]    = COMBO(enter_combo, KC_ENTER),
     [ESC]      = COMBO(escape_combo, KC_ESCAPE),
-    [SHORTCUT] = COMBO(shct_combo, MO(_SHORTCUT)),
+    [SHORTCUT] = COMBO(shct_combo, SHCT_TG),
     [FN_TO]    = COMBO(fn_to_combo, TO(_FN)),
     [LANG_SW]  = COMBO(lang_sw_combo, LALT(KC_LSFT)),
     [MACRO_CR] = COMBO(macro_cr_combo, MO(_MACRO)),
@@ -149,10 +158,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,        _______,            /**/ _______,           _______
     ),
     [_SHORTCUT] = LAYOUT_split_3x5_2(
-        XXXXXXX,        KC_HOME,        KC_UP,          KC_END,         KC_MS_BTN2,         /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        TO(_MAIN),      KC_HOME,        KC_UP,          KC_END,         KC_MS_BTN2,         /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
         C(KC_A),        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_MS_BTN1,         /**/ XXXXXXX,           KC_MS_BTN1,     KC_MS_BTN2,     XXXXXXX,        XXXXXXX,
-        C(KC_Z),        XXXXXXX,        XXXXXXX,        XXXXXXX,        C(KC_Y),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
-                                                        XXXXXXX,        XXXXXXX,            /**/ _______,           _______
+        C(KC_Z),        KC_BSPC,        C(KC_C),        C(KC_V),        C(KC_Y),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+                                                        _______,        _______,            /**/ _______,           _______
     ),
     [_SYM] = LAYOUT_split_3x5_2(
         TD(DANCE_QUIT), KC_7,           TD(DANCE_TASK), KC_9,           KC_0,               /**/ KC_CIRCUMFLEX,     KC_AMPERSAND,   KC_ASTERISK,    KC_UNDERSCORE,  KC_DOLLAR,
