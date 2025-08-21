@@ -68,6 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         keymap_config.swap_lalt_lgui = false;
         keymap_config.swap_rctl_rgui = false;
       }
+      break;
     case SHCT_TG:
       if (record->event.pressed) {
         if (layer_state_is(_SHORTCUT)) {
@@ -76,7 +77,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_move(_SHORTCUT);
         }
       }
-      break;
   }
   return true;
 }
