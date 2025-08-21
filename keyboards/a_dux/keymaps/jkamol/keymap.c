@@ -27,6 +27,7 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
   MAC_MODE,
   WIN_MODE,
   SHCT_TG,
+  HTTPS,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -77,6 +78,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_move(_SHORTCUT);
         }
       }
+      break;
+    case HTTPS:
+      if (record->event.pressed) {
+        SEND_STRING("https://");
+      }
+      break;
   }
   return true;
 }
@@ -90,6 +97,18 @@ void matrix_scan_user(void) { // The very important timer.
   }
 }
 // End Super ALT↯TAB and Mac/Win mode
+
+enum tap_dance_codes {
+    DANCE_QUIT,
+    DANCE_TASK,
+    DANCE_QWERTY,
+    DANCE_PWR,
+    DANCE_SCR,
+    DANCE_FN,
+    DANCE_MAIN,
+    DANCE_NLK,
+    DANCE_SHCT,
+};
 
 enum combo_events {
     ENTER,
@@ -122,7 +141,7 @@ const uint16_t PROGMEM lock_nav[]       = {LT(_NAV,KC_E), LT(_FN,KC_ENTER), COMB
 combo_t key_combos[] = {
     [ENTER]    = COMBO(enter_combo, KC_ENTER),
     [ESC]      = COMBO(escape_combo, KC_ESCAPE),
-    [SHORTCUT] = COMBO(shct_combo, SHCT_TG),
+    [SHORTCUT] = COMBO(shct_combo, TD(DANCE_SHCT)),
     [FN_TO]    = COMBO(fn_to_combo, TO(_FN)),
     [LANG_SW]  = COMBO(lang_sw_combo, LALT(KC_LSFT)),
     [MACRO_CR] = COMBO(macro_cr_combo, MO(_MACRO)),
@@ -131,17 +150,6 @@ combo_t key_combos[] = {
     [NUM_MO]   = COMBO(num_mo_combo, MO(_NUMPAD)),
     [NUM_TO]   = COMBO(num_to_combo, TO(_NUMPAD)),
     [LOCK_NAV] = COMBO(lock_nav, TO(_NAV)),
-};
-
-enum tap_dance_codes {
-    DANCE_QUIT,
-    DANCE_TASK,
-    DANCE_QWERTY,
-    DANCE_PWR,
-    DANCE_SCR,
-    DANCE_FN,
-    DANCE_MAIN,
-    DANCE_NLK,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -160,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SHORTCUT] = LAYOUT_split_3x5_2(
         TO(_MAIN),      KC_HOME,        KC_UP,          KC_END,         KC_MS_BTN2,         /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
         C(KC_A),        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_MS_BTN1,         /**/ XXXXXXX,           KC_MS_BTN1,     KC_MS_BTN2,     XXXXXXX,        XXXXXXX,
-        C(KC_Z),        KC_BSPC,        C(KC_C),        C(KC_V),        C(KC_Y),            /**/ XXXXXXX,           XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,
+        C(KC_Z),        KC_BSPC,        C(KC_C),        C(KC_V),        C(KC_Y),            /**/ XXXXXXX,           HTTPS,          XXXXXXX,        XXXXXXX,        XXXXXXX,
                                                         _______,        _______,            /**/ _______,           _______
     ),
     [_SYM] = LAYOUT_split_3x5_2(
@@ -484,7 +492,40 @@ void DANCE_NLK_reset(tap_dance_state_t *state, void *user_data) {
     tap_state.state = TD_NONE;
 }
 
-tap_dance_action_t  tap_dance_actions[] = {
+void DANCE_SHCT_finished(tap_dance_state_t *state, void *user_data);
+void DANCE_SHCT_reset(tap_dance_state_t *state, void *user_data);
+
+void DANCE_SHCT_finished(tap_dance_state_t *state, void *user_data) {
+    tap_state.state = cur_dance(state);
+    switch (tap_state.state) {
+        case TD_SINGLE_TAP:         
+            if (layer_state_is(_SHORTCUT)) {
+                layer_move(_MAIN);
+            } else {
+                layer_move(_SHORTCUT);
+            }
+            break;
+        case TD_SINGLE_HOLD:        layer_on(_SHORTCUT); break;
+        case TD_DOUBLE_TAP:         
+            if (layer_state_is(_SHORTCUT)) {
+                layer_move(_MAIN);
+            } else {
+                layer_move(_SHORTCUT);
+            }
+            break;
+        default: break;
+    }
+}
+
+void DANCE_SHCT_reset(tap_dance_state_t *state, void *user_data) {
+    switch (tap_state.state) {
+        case TD_SINGLE_HOLD:        layer_off(_SHORTCUT); break;
+        default: break;
+    }
+    tap_state.state = TD_NONE;
+}
+
+tap_dance_action_t tap_dance_actions[] = {
     [DANCE_QUIT]   = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_QUIT, DANCE_QUIT_finished, DANCE_QUIT_reset),
     [DANCE_TASK]   = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_TASK, DANCE_TASK_finished, DANCE_TASK_reset),
     [DANCE_QWERTY] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, DANCE_QWERTY_finished, DANCE_QWERTY_reset),
@@ -492,4 +533,5 @@ tap_dance_action_t  tap_dance_actions[] = {
     [DANCE_SCR]    = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_SCR, DANCE_SCR_finished, DANCE_SCR_reset),
     [DANCE_MAIN]   = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_MAIN, DANCE_MAIN_finished, DANCE_MAIN_reset),
     [DANCE_NLK]    = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_NLK, DANCE_NLK_finished, DANCE_NLK_reset),
+    [DANCE_SHCT]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, DANCE_SHCT_finished, DANCE_SHCT_reset),
 };
